@@ -3,6 +3,11 @@ name: Terraform
 on:
   pull_request:
   workflow_dispatch:
+    inputs:
+      action:
+        description: 'apply or destroy'
+        required: true
+        default: 'apply'
 
 permissions:
   contents: read
@@ -46,3 +51,11 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: us-east-1
         run: terraform apply -auto-approve -input=false
+        
+      - name: Terraform Destroy
+        if: github.event_name == 'workflow_dispatch' && github.event.inputs.action == 'destroy'
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: us-east-1
+        run: terraform destroy -auto-approve -input=false
