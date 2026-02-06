@@ -44,7 +44,6 @@ jobs:
     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     AWS_REGION: var.region
     run: terraform plan -input=false
-      
-    - name: Terraform Apply
-    #if: github.ref == 'refs/heads/"main"' && github.event_name == 'push'
+    
+  - name: Terraform Apply
     run: terraform apply -auto-approve -input=false
