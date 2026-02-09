@@ -1,11 +1,21 @@
-resource "aws_dynamodb_table" "terraform_state_lock" {
-  name         = "terraform-state-lock"
-  billing_mode = "PAY_PER_REQUEST" # Or PROVISIONED for defined capacity
+resource "aws_dynamodb_table" "example_table" {
+  name         = "example-table"
+  billing_mode = "PAY_PER_REQUEST"
 
-  hash_key = "LockID"
+  tags = {
+    Environment = "Production"
+    Project     = "Example"
+  }
+
+  point_in_time_recovery_enabled = true
+
+  stream_enabled = true
+  stream_view_type = "NEW_AND_OLD_IMAGES"
 
   attribute {
-    name = "LockID"
+    name = "id"
     type = "S"
   }
+
+  hash_key = "id"
 }
