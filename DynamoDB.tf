@@ -1,9 +1,11 @@
 terraform {
+  required_version = ">= 1.6.0"
+
   backend "s3" {
-    bucket         = "my-terraform-state-bucket"
-    key            = "terraform/state.tfstate"
-    region         = "us-east-1"
-    encrypt        = true
-    dynamodb_table = "terraform-locks"
+    bucket        = "hypha-demo-001"
+    key           = "terraform/state.tfstate"
+    region        = "us-east-1"
+    encrypt       = true
+    use_lockfile  = true
   }
 }
