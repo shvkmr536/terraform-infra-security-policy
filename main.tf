@@ -3,7 +3,7 @@ resource "aws_instance" "demo" {
   instance_type = "t2.micro"
 
   tags = {
-    Name = "github-oidc-ec2"
-    Environment = "Production"                
+    Name        = "github-oidc-ec2"
+    Environment = "Production"
   }
 }
