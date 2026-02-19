@@ -4,6 +4,6 @@ resource "aws_instance" "demo" {
 
   tags = {
     Name = "github-oidc-ec2"
-    Environment = "Production"                   
+    Environment = "Production"                
   }
 }
