@@ -3,7 +3,7 @@ resource "aws_instance" "demo" {
   instance_type = var.instance_type
 
   tags = {
-    Name = "github-oidc-ec2"
-    Environment = "Production"                
+    Name        = "github-oidc-ec2"
+    Environment = "Production"
   }
 }
