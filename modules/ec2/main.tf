@@ -4,5 +4,6 @@ resource "aws_instance" "demo" {
   tags = {
     Name        = "web-server-${var.env}"
     Environment = var.env
+    ManagedBy   = "Terraform"
   }
 }
