@@ -8,6 +8,13 @@ on:
         description: 'apply or destroy'
         required: true
         default: 'plan'
+      environment:
+        description: "Select environment to deploy"
+        required: true
+        type: choice
+        options:
+          - dev
+          - test
 
 permissions:
   contents: read
@@ -15,6 +22,7 @@ permissions:
 
 jobs:
   dev:
+    if: ${{ github.event.inputs.environment == 'dev' }}
     runs-on: ubuntu-latest
 
     defaults:
@@ -53,7 +61,7 @@ jobs:
         if: github.event_name == 'workflow_dispatch' && github.event.inputs.action == 'destroy'
         run: cd environments/dev && terraform destroy -auto-approve -input=false
   test:
-    needs: dev
+    if: ${{ github.event.inputs.environment == 'test' }}
     runs-on: ubuntu-latest
 
     defaults:
