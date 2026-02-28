@@ -15,7 +15,7 @@ permissions:
 
 jobs:
   dev:
-    name: Terraform
+    name: dev
     runs-on: ubuntu-latest
 
     defaults:
@@ -54,7 +54,7 @@ jobs:
         if: github.event_name == 'workflow_dispatch' && github.event.inputs.action == 'destroy'
         run: cd environments/dev && terraform destroy -auto-approve -input=false
   test:
-    name: Terraform
+    name: test
     runs-on: ubuntu-latest
 
     defaults:
