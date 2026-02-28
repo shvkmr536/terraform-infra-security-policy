@@ -1,6 +1,6 @@
 variable "aws_region" {
   default = "us-east-1"
-  type        = string
+  type    = string
 }
 
 variable "instance_type" {
@@ -10,5 +10,5 @@ variable "instance_type" {
 
 variable "env" {
   default = "dev"
-  type    = string  
+  type    = string
 }
