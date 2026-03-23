@@ -3,7 +3,7 @@ terraform {
 
   backend "s3" {
     bucket       = "hypha-demo-001"
-    key          = "test/ec2/state.tfstate"
+    key          = "prod/ec2/state.tfstate"
     region       = "us-east-1"
     encrypt      = true
     use_lockfile = true

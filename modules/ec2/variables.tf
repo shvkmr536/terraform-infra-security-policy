@@ -1,3 +1,11 @@
+variable "name" {
+  type = string
+}
+
+variable "app_name" {
+  type = string
+}
+
 variable "aws_region" {
   description = "AWS region to deploy resources into"
   type        = string
@@ -17,4 +25,9 @@ variable "env" {
   description = "Environment for the deployment"
   type        = string
 }
+
+variable "subnet_id" {
+  type = string
+}
+
 

@@ -1,6 +1,6 @@
 output "instance_id" {
-  value = aws_instance.demo.id
+  value = aws_instance.assignment.id
 }
 output "instance_name" {
-  value = aws_instance.demo.tags["Name"]
+  value = aws_instance.assignment.tags["Name"]
 }
