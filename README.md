@@ -198,7 +198,7 @@ Example usage:
 
 ```hcl
 module "vpc" {
-  source = "git::https://github.com/your-org/vpc-module.git?ref=v1.0.0"
+  source = "git::https://github.com/shvkmr536/terraform-github-action.git?ref=v1.0.0"
 }
 ```
 

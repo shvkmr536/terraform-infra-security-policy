@@ -3,7 +3,8 @@ provider "aws" {
 }
 
 module "vpc" {
-  source = "../../modules/vpc"
+  //source = "../../modules/vpc"
+  source        = "git::https://github.com/shvkmr536/terraform-github-action.git//modules/vpc?ref=v1.0.0"
 
   vpc_cidr       = var.vpc_cidr
   public_subnets = var.public_subnets
@@ -12,7 +13,8 @@ module "vpc" {
 
 
 module "ec2" {
-  source        = "../../modules/ec2"
+  //source        = "../../modules/ec2"
+  source        = "git::https://github.com/shvkmr536/terraform-github-action.git//modules/ec2?ref=v1.0.0"
   name          = "dev-instance"
   ami_id        = var.ami_id
   instance_type = var.instance_type
