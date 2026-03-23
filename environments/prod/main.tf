@@ -14,7 +14,7 @@ module "vpc" {
 module "ec2" {
   source        = "../../modules/ec2"
   name          = "dev-instance"
-  ami_id       = var.ami_id
+  ami_id        = var.ami_id
   instance_type = var.instance_type
   subnet_id     = module.vpc.subnet_ids[0]
   app_name      = "prod-app"

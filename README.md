@@ -149,13 +149,13 @@ Each environment maintains its own state and configuration.
 vpc_cidr = "10.0.0.0/16"
 
 public_subnets = {
-  "ap-south-1a" = "10.0.1.0/24"
-  "ap-south-1b" = "10.0.2.0/24"
+  "us-east-1a" = "10.0.1.0/24"
+  "us-east-1b" = "10.0.2.0/24"
 }
 
 instance_type = "t2.micro"
 env           = "dev"
-aws_region    = "ap-south-1"
+aws_region    = "us-east-1"
 ```
 
 ---

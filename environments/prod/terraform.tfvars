@@ -5,7 +5,7 @@ public_subnets = {
   "us-east-1b" = "10.0.2.0/24"
 }
 
-ami_id       = "ami-02dfbd4ff395f2a1b"
+ami_id        = "ami-02dfbd4ff395f2a1b"
 instance_type = "t3.medium"
 aws_region    = "us-east-1"
 env           = "prod"

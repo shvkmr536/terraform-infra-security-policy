@@ -49,8 +49,8 @@ This module provisions:
 cidr_block = "10.0.0.0/16"
 
 public_subnets = {
-  "ap-south-1a" = "10.0.1.0/24"
-  "ap-south-1b" = "10.0.2.0/24"
+  "us-east-1a" = "10.0.1.0/24"
+  "us-east-1b" = "10.0.2.0/24"
 }
 ```
 
@@ -114,7 +114,7 @@ Resources are tagged using the VPC name:
 Example:
 
 ```
-dev-vpc-public-ap-south-1a
+dev-vpc-public-us-east-1a
 ```
 
 ---

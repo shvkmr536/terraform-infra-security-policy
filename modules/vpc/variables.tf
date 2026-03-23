@@ -14,6 +14,6 @@ variable "vpc_cidr" {
 }
 
 variable "public_subnets" {
-  type = map(string)
+  type        = map(string)
   description = "AZ => CIDR mapping"
 }
