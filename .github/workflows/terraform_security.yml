@@ -57,7 +57,10 @@ jobs:
         uses: open-policy-agent/setup-opa@v2
 
       - name: Setup Conftest
-        uses: instrumenta/conftest-action@v0.3.0
+        run: |
+          wget https://github.com/open-policy-agent/conftest/releases/download/v0.67.1/conftest_0.67.1_Darwin_x86_64.tar.gz
+          tar xzf conftest_0.67.1_Darwin_x86_64.tar.gz
+          sudo mv conftest /usr/local/bin
 
       # 5. Terraform Init
       - name: Terraform Init
