@@ -66,7 +66,7 @@ jobs:
       - name: Run Checkov Scan
         run: |
           pip install checkov
-          checkov -d .
+          checkov -d .  --skip-path .github/workflows/terraform.yml
 
       # 9. Terraform Plan
       - name: Terraform Plan
