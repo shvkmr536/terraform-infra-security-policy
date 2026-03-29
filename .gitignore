@@ -5,5 +5,11 @@
 .DS_Store
 *.tfplan
 *.tfplan*
-environments/dev/*.tfplan*
-environments/prod/*.tfplan*
+
+environments/dev/tfplan.json
+environments/dev/destroy.tfplan
+environments/dev/tfplan.binary
+
+environments/prod/tfplan.json
+environments/prod/destroy.tfplan
+environments/prod/tfplan.binary
