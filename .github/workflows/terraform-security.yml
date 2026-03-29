@@ -97,11 +97,11 @@ jobs:
       # 12. Apply (manual trigger only)
       - name: Terraform Apply
         if: github.event_name == 'workflow_dispatch' && github.event.inputs.action == 'apply'
-        run: terraform apply -auto-approve tfplan.binary
-        working-directory: environments/${{ env.ENV }}
+        run: ./scripts/deploy.sh ${{ env.ENV }}
+        #working-directory: environments/${{ env.ENV }}
 
       # 13. Destroy (manual trigger only)
       - name: Terraform Destroy
         if: github.event_name == 'workflow_dispatch' && github.event.inputs.action == 'destroy'
-        run: terraform destroy -auto-approve
-        working-directory: environments/${{ env.ENV }}
+        run: ./scripts/deploy.sh ${{ env.ENV }}
+        #working-directory: environments/${{ env.ENV }}
