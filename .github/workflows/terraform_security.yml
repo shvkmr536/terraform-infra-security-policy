@@ -4,19 +4,6 @@ on:
   pull_request:
   push:
   workflow_dispatch:
-    #inputs:
-    #  action:
-    #    description: 'plan | apply | destroy'
-    #    required: true
-    #    default: 'plan'
-    #  environment:
-    #    description: "Select environment"
-    #    required: true
-    #    type: choice
-    #    options:
-    #      - dev
-    #      - prod
-
 permissions:
   contents: read
   id-token: write
