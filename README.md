@@ -15,6 +15,9 @@ terraform-modules/
 ├── modules/
 │   ├── vpc/        # VPC module
 │   └── ec2/        # EC2 module
+|   └── s3/        # S3 module
+  
+
 │
 ├── environments/
 │   ├── dev/        # Development environment
@@ -94,6 +97,15 @@ Each environment has its own configuration and variables.
 cd environments/dev
 terraform init
 ```
+
+### Initialize, plan & apply, Destroy and drift checking.
+```bash
+./scripts/deploy.sh #dev or prod 
+./scripts/destroy #dev or prod
+./scripts/drift-check #dev or prod
+./
+```
+
 
 ---
 

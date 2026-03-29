@@ -1,7 +1,6 @@
 resource "aws_instance" "assignment" {
   ami           = var.ami_id
   instance_type = var.instance_type
-  subnet_id     = var.subnet_id
   region        = var.aws_region
 
 
@@ -10,7 +9,7 @@ resource "aws_instance" "assignment" {
   })
 
   tags = {
-    Name        = "web-server-${var.env}"
+    Name        = "${var.env}-web-server"
     Environment = var.env
     ManagedBy   = "Terraform"
   }

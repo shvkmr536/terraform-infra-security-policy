@@ -19,11 +19,12 @@ variable "ami_id" {
 }
 
 variable "vpc_cidr" {
-  description = "The CIDR block for the VPC"
+  description = "The CIDR sblock for the VPC"
   type        = string
 }
 
-variable "public_subnets" {
-  description = "The public subnets for the VPC"
-  type        = map(string)
+variable "s3_version" {
+  description = "The versioning state of the S3 bucket"
+  type        = bool
+  default     = true
 }

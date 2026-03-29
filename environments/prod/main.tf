@@ -3,22 +3,28 @@ provider "aws" {
 }
 
 module "vpc" {
-  source = "git::https://github.com/shvkmr536/terraform-github-action.git//modules/vpc?ref=v1.0.0"
-
-  vpc_cidr       = var.vpc_cidr
-  public_subnets = var.public_subnets
-  name           = "prod-vpc"
+  source   = "git::https://github.com/shvkmr536/terraform-github-action.git//modules/vpc?ref=v1.0.0"
+  name     = var.env
+  vpc_cidr = var.vpc_cidr
+  env      = var.env
 }
 
 
 module "ec2" {
   //source        = "../../modules/ec2"
   source        = "git::https://github.com/shvkmr536/terraform-github-action.git//modules/ec2?ref=v1.0.0"
-  name          = "prod-instance"
+  name          = "${var.env}-instance"
   ami_id        = var.ami_id
   instance_type = var.instance_type
-  subnet_id     = module.vpc.subnet_ids[0]
-  app_name      = "prod-app"
+  app_name      = "${var.env}-app"
   env           = var.env
   aws_region    = var.aws_region
 }
+
+module "s3" {
+  source      = "../../modules/s3"
+  bucket_name = "secure"
+  env         = var.env
+  s3_version  = var.s3_version
+}
+

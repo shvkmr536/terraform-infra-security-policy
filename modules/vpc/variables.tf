@@ -13,7 +13,7 @@ variable "vpc_cidr" {
   }
 }
 
-variable "public_subnets" {
-  type        = map(string)
-  description = "AZ => CIDR mapping"
+variable "env" {
+  type        = string
+  description = "Environment (e.g. dev, staging, prod)"
 }

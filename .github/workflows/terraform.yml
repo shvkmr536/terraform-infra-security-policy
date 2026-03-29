@@ -27,6 +27,7 @@ jobs:
 
     defaults:
       run:
+        working-directory: environments/dev
         shell: bash
 
     steps:
@@ -36,7 +37,7 @@ jobs:
       - name: Configure AWS credentials from OIDC
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::254317103086:role/github-action-role
+          role-to-assume: arn:aws:iam::495680546469:role/github-action-role
           aws-region: us-east-1
           audience: sts.amazonaws.com
           
@@ -44,22 +45,30 @@ jobs:
         uses: hashicorp/setup-terraform@v3
 
       - name: Terraform Init
-        run: cd environments/dev && terraform init
+        run: terraform init
 
       - name: Terraform Format
-        run: cd environments/dev && terraform fmt -check
+        run: terraform fmt -check
+
+      - name: Validate
+        run: terraform validate
+
+      - name: Security Scan
+        run: |
+          pip install checkov
+          checkov -d .
 
       - name: Terraform Plan
         if: github.event_name == 'workflow_dispatch' && github.event.inputs.action == 'plan'
-        run: cd environments/dev && terraform plan #-input=false
+        run: terraform plan #-input=false
 
       - name: Terraform Apply
         if: github.event_name == 'workflow_dispatch' && github.event.inputs.action == 'apply'
-        run: cd environments/dev && terraform apply -auto-approve -input=false
+        run: terraform apply -auto-approve -input=false
 
       - name: Terraform Destroy
         if: github.event_name == 'workflow_dispatch' && github.event.inputs.action == 'destroy'
-        run: cd environments/dev && terraform destroy -auto-approve -input=false
+        run: terraform destroy -auto-approve -input=false
   test:
     if: ${{ github.event.inputs.environment == 'test' }}
     runs-on: ubuntu-latest
