@@ -3,7 +3,7 @@
 *.tfstate.backup
 .terraform.lock.hcl
 .DS_Store
-tfplan.*
 *.tfplan
-destroy.tfplan
-
+*.tfplan*
+environments/dev/*.tfplan*
+environments/prod/*.tfplan*
