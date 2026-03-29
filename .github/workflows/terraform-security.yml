@@ -2,7 +2,6 @@ name: Terraform-Security-Policy-Check
 
 on:
   pull_request:
-  push:
   workflow_dispatch:
     inputs:
       action:
@@ -51,9 +50,9 @@ jobs:
         uses: hashicorp/setup-terraform@v3
 
       - name: Download OPA
-        uses: open-policy-agent/setup-opa@v2
+        uses: open-policy-agent/setup-opa
         with:
-           version: latest # install the latest version
+          version: latest # install the latest version
 
       - name: Run OPA Tests
         # Run opa test command on your policy files
