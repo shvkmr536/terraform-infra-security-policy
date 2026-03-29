@@ -14,7 +14,7 @@ on:
         type: choice
         options:
           - dev
-          - test
+          - prod
 
 permissions:
   contents: read
@@ -69,8 +69,8 @@ jobs:
       - name: Terraform Destroy
         if: github.event_name == 'workflow_dispatch' && github.event.inputs.action == 'destroy'
         run: terraform destroy -auto-approve -input=false
-  test:
-    if: ${{ github.event.inputs.environment == 'test' }}
+  prod:
+    if: ${{ github.event.inputs.environment == 'prod' }}
     runs-on: ubuntu-latest
 
     defaults:
@@ -92,19 +92,19 @@ jobs:
         uses: hashicorp/setup-terraform@v3
 
       - name: Terraform Init
-        run: cd environments/test && terraform init
+        run: cd environments/prod && terraform init
 
       - name: Terraform Format
-        run: cd environments/test && terraform fmt -check
+        run: cd environments/prod && terraform fmt -check
 
       - name: Terraform Plan
         if: github.event_name == 'workflow_dispatch' && github.event.inputs.action == 'plan'
-        run: cd environments/test && terraform plan #-input=false
+        run: cd environments/prod && terraform plan #-input=false
 
       - name: Terraform Apply
         if: github.event_name == 'workflow_dispatch' && github.event.inputs.action == 'apply'
-        run: cd environments/test && terraform apply -auto-approve -input=false
+        run: cd environments/prod && terraform apply -auto-approve -input=false
 
       - name: Terraform Destroy
         if: github.event_name == 'workflow_dispatch' && github.event.inputs.action == 'destroy'
-        run: cd environments/test && terraform destroy -auto-approve -input=false
+        run: cd environments/prod && terraform destroy -auto-approve -input=false
