@@ -55,13 +55,9 @@ jobs:
       # 4. Install OPA + Conftest
       - name: Install OPA
         uses: open-policy-agent/setup-opa@v2
-        with:
-          opa_version: latest
 
       - name: Setup Conftest
         uses: instrumenta/conftest-action@v0.3.0
-        with:
-          conftest_version: latest
 
       # 5. Terraform Init
       - name: Terraform Init
