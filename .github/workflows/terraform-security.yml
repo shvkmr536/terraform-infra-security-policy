@@ -51,7 +51,7 @@ jobs:
 
       - name: Setup OPA
         # Use the official action to install OPA CLI
-        uses: [open-policy-agent/setup-opa@v2](https://github.com/open-policy-agent/setup-opa)
+        uses: "[open-policy-agent/setup-opa@v2](https://github.com/open-policy-agent/setup-opa)"
         with:
           version: latest # Specify the OPA version, 'latest' or a specific SemVer range
 
