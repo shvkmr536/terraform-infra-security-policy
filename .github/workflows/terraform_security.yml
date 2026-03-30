@@ -4,6 +4,18 @@ on:
   pull_request:
   push:
   workflow_dispatch:
+    inputs:
+      action:
+        description: 'apply or destroy'
+        required: true
+        default: 'plan'
+      environment:
+        description: "Select environment to deploy"
+        required: true
+        type: choice
+        options:
+          - dev
+          - prod
 permissions:
   contents: read
   id-token: write
@@ -82,7 +94,6 @@ jobs:
       - name: Run Conftest
         run: conftest test tfplan.json -p ../../policies/ --all-namespaces
         working-directory: environments/${{ env.ENV }}
-        #run: conftest test environments/${{ env.ENV }}/tfplan.json -p policies/
 
       # 12. Apply (manual trigger only)
       - name: Terraform Apply
