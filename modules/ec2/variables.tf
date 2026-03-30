@@ -1,14 +1,5 @@
-variable "name" {
-  type = string
-}
-
 variable "app_name" {
   type = string
-}
-
-variable "aws_region" {
-  description = "AWS region to deploy resources into"
-  type        = string
 }
 
 variable "instance_type" {
@@ -26,4 +17,23 @@ variable "env" {
   type        = string
 }
 
+variable "vpc_id" {
+  description = "VPC ID to launch resources in"
+  type        = string
+}
 
+variable "security_group_id" {
+  description = "Security Group ID to associate with the EC2 instance"
+  type        = string
+}
+
+variable "subnet_id" {
+  description = "Subnet ID to launch the EC2 instance in"
+  type        = string
+}
+
+variable "ManagedBy" {
+  type        = string
+  description = "The entity that manages the resource"
+  default     = "Terraform"
+}

@@ -1,9 +1,14 @@
+variable "name" {
+  type = string
+}
+
 variable "env" {
-  description = "The environment name"
+  description = "Environment for the deployment"
   type        = string
 }
-variable "bucket_name" {
-  description = "The name of the S3 bucket"
+
+variable "vpc_id" {
+  description = "VPC ID to launch resources in"
   type        = string
 }
 

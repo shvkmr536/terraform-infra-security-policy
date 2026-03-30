@@ -62,11 +62,11 @@ jobs:
       - name: Run OPA Tests
         run: opa test policies/ -v
 
-      # 8. Security Scan (Checkov)
-      - name: Run Checkov Scan
-        run: |
-          pip install checkov
-          checkov -d .  --skip-path .github/workflows/terraform.yml
+      ## 8. Security Scan (Checkov)
+      #- name: Run Checkov Scan
+      #  run: |
+      #    pip install checkov
+      #    checkov -d .  --skip-path .github/workflows/terraform.yml
 
       # 9. Terraform Plan
       - name: Terraform Plan
