@@ -70,7 +70,7 @@ jobs:
 
       # 9. Terraform Plan
       - name: Terraform Plan
-        run: terraform plan -out=tfplan.binary
+        run: terraform plan  -var-file="${{ env.ENV }}.tfvars" -out=tfplan.binary
         working-directory: environments/${{ env.ENV }}
 
       # 10. Convert Plan to JSON
