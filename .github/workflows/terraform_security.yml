@@ -106,5 +106,5 @@ jobs:
       # 13. Destroy (manual trigger only)
       - name: Terraform Destroy
         if: github.event_name == 'workflow_dispatch' && github.event.inputs.action == 'destroy'
-        run: ./scripts/deploy.sh ${{ env.ENV }}
+        run: terraform destroy tfplan.binary
         working-directory: environments/${{ env.ENV }}
