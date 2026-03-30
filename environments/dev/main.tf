@@ -3,23 +3,26 @@ provider "aws" {
 }
 
 module "vpc" {
-  source   = "../../modules/vpc"
-  name     = var.env
-  vpc_cidr = var.vpc_cidr
-  env      = var.env
+  source    = "../../modules/vpc"
+  name      = var.env
+  vpc_cidr  = var.vpc_cidr
+  env       = var.env
+  ManagedBy = var.ManagedBy
 }
 
 module "sg" {
-  source = "../../modules/sg"
-  name   = "${var.env}-sg"
-  env    = var.env
-  vpc_id = module.vpc.vpc_id
+  source    = "../../modules/sg"
+  name      = "${var.env}-sg"
+  env       = var.env
+  vpc_id    = module.vpc.vpc_id
+  ManagedBy = var.ManagedBy
 }
 
 module "s3" {
   source      = "../../modules/s3"
   bucket_name = "secure"
   env         = var.env
+  ManagedBy   = var.ManagedBy
 }
 
 
@@ -32,4 +35,5 @@ module "ec2" {
   security_group_id = module.sg.web_sg_id
   vpc_id            = module.vpc.vpc_id
   subnet_id         = module.vpc.public_subnet_ids[0]
+  ManagedBy         = var.ManagedBy
 }
