@@ -1,6 +1,6 @@
 resource "aws_instance" "assignment" {
-  ami           = var.ami_id
-  instance_type = var.instance_type
+  ami                    = var.ami_id
+  instance_type          = var.instance_type
   iam_instance_profile   = aws_iam_instance_profile.ec2_profile.name
   vpc_security_group_ids = [var.security_group_id]
   subnet_id              = var.subnet_id

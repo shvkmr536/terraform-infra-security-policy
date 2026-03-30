@@ -11,16 +11,16 @@ module "vpc" {
 }
 
 module "sg" {
-  source       = "../../modules/sg"
-  name         = "${var.env}-sg"
-  env          = var.env
-  vpc_id       = module.vpc.vpc_id
+  source = "../../modules/sg"
+  name   = "${var.env}-sg"
+  env    = var.env
+  vpc_id = module.vpc.vpc_id
 }
 
 
 module "ec2" {
   //source        = "git::https://github.com/shvkmr536/terraform-infra-security-policy.git//modules/ec2?ref=v1.0.0" //for tag
-  source        = "git::https://github.com/shvkmr536/terraform-infra-security-policy.git//modules/ec2?ref=main"
+  source            = "git::https://github.com/shvkmr536/terraform-infra-security-policy.git//modules/ec2?ref=main"
   ami_id            = var.ami_id
   instance_type     = var.instance_type
   app_name          = "${var.env}-app"
