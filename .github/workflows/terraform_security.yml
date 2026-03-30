@@ -80,12 +80,15 @@ jobs:
 
       # 11. Conftest Policy Enforcement
       - name: Run Conftest
-        run: conftest test environments/${{ env.ENV }}/tfplan.json -p policies/
+        run: conftest test tfplan.json -p ../../policies/ --all-namespaces
+        working-directory: environments/${{ env.ENV }}
+        #run: conftest test environments/${{ env.ENV }}/tfplan.json -p policies/
 
       # 12. Apply (manual trigger only)
       - name: Terraform Apply
         if: github.event_name == 'workflow_dispatch' && github.event.inputs.action == 'apply'
-        run: ./scripts/deploy.sh ${{ env.ENV }}
+        run: terraform apply tfplan.binary
+        #run: ./scripts/deploy.sh ${{ env.ENV }}
         #working-directory: environments/${{ env.ENV }}
 
       # 13. Destroy (manual trigger only)
