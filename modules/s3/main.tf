@@ -10,6 +10,9 @@ resource "random_string" "bucket_suffix" {
 # S3 bucket configuration
 resource "aws_s3_bucket" "secure_bucket" {
   bucket = "${var.env}-${var.bucket_name}-${random_string.bucket_suffix.result}"
+  lifecycle {
+    prevent_destroy = true
+  }
   tags = {
     Name        = "${var.env}-secure-bucket"
     Environment = var.env
