@@ -27,7 +27,6 @@ jobs:
 
     defaults:
       run:
-        working-directory: environments/${{ env.ENV }}
         shell: bash
 
     env:
@@ -65,11 +64,12 @@ jobs:
       # 5. Terraform Init
       - name: Terraform Init
         run: terraform init
-        #working-directory: environments/${{ env.ENV }}
+        working-directory: environments/${{ env.ENV }}
 
       # 6. Terraform Format Check
       - name: Terraform Format
         run: terraform fmt -check -recursive
+        working-directory: environments/${{ env.ENV }}
 
       # 7. OPA Unit Tests (policy validation)
       - name: Run OPA Tests
@@ -84,12 +84,12 @@ jobs:
       # 9. Terraform Plan
       - name: Terraform Plan
         run: terraform plan  -var-file="${{ env.ENV }}.tfvars" -out=tfplan.binary
-        #working-directory: environments/${{ env.ENV }}
+        working-directory: environments/${{ env.ENV }}
 
       # 10. Convert Plan to JSON
       - name: Convert Plan
         run: terraform show -json tfplan.binary > tfplan.json
-        #working-directory: environments/${{ env.ENV }}
+        working-directory: environments/${{ env.ENV }}
 
       # 11. Conftest Policy Enforcement
       - name: Run Conftest
@@ -101,10 +101,10 @@ jobs:
         if: github.event_name == 'workflow_dispatch' && github.event.inputs.action == 'apply'
         run: terraform apply tfplan.binary
         #run: ./scripts/deploy.sh ${{ env.ENV }}
-        #working-directory: environments/${{ env.ENV }}
+        working-directory: environments/${{ env.ENV }}
 
       # 13. Destroy (manual trigger only)
       - name: Terraform Destroy
         if: github.event_name == 'workflow_dispatch' && github.event.inputs.action == 'destroy'
         run: ./scripts/deploy.sh ${{ env.ENV }}
-        #working-directory: environments/${{ env.ENV }}
+        working-directory: environments/${{ env.ENV }}
