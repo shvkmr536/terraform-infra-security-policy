@@ -94,7 +94,7 @@ jobs:
       # 11. Conftest Policy Enforcement
       - name: Run Conftest
         run: conftest test tfplan.json -p ../../policies/ --all-namespaces
-        #working-directory: environments/${{ env.ENV }}
+        working-directory: environments/${{ env.ENV }}
 
       # 12. Apply (manual trigger only)
       - name: Terraform Apply
